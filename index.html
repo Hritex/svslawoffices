@@ -539,11 +539,6 @@
       status.classList.add('err');
       return;
     }
-    if (FORMSPREE_ID === 'mykrgajj') {
-      status.textContent = 'Form not yet connected. Add your Formspree ID in index.html.';
-      status.classList.add('err');
-      return;
-    }
 
     sendBtn.disabled = true;
     sendBtn.textContent = 'Sending...';
