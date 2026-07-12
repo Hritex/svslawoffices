@@ -1,0 +1,76 @@
+:root{
+  --navy:#0C1B31; --navy-2:#142540; --taupe:#A5917E; --taupe-light:#C2B2A2;
+  --paper:#FBFAF7; --paper-2:#F2EEE7; --ink:#1c2536; --muted:#6b6256;
+  --line:rgba(12,27,49,.14);
+  --display:'Fraunces',Georgia,serif; --body:'Inter',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--body);color:var(--ink);background:var(--paper);line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(20px,5vw,32px)}
+.wrap.narrow{max-width:760px}
+
+/* header */
+header{position:fixed;top:0;left:0;right:0;z-index:900;padding:14px 0;
+  background:rgba(251,250,247,.94);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line)}
+header .bar{display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:14px}
+.logo .lg{font-family:var(--display);font-size:1.5rem;letter-spacing:.2em;font-weight:600;color:var(--navy)}
+.logo .div{width:1px;height:30px;background:var(--taupe);opacity:.8}
+.logo .sm{font-size:.6rem;letter-spacing:.3em;line-height:1.5;text-transform:uppercase;color:var(--taupe);font-weight:600}
+nav ul{display:flex;gap:34px;list-style:none}
+nav a{font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;font-weight:500;color:var(--muted);transition:.25s}
+nav a:hover{color:var(--navy)}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:6px}
+.burger span{width:26px;height:2px;background:var(--navy);transition:.3s}
+
+/* note body */
+.note{padding:150px 0 90px}
+.back{display:inline-block;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);font-weight:600;margin-bottom:34px;transition:.25s}
+.back:hover{color:var(--taupe)}
+.note .cat{display:block;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--taupe);font-weight:600}
+.note h1{font-family:var(--display);font-size:clamp(1.9rem,4.4vw,3rem);color:var(--navy);
+  font-weight:400;line-height:1.15;letter-spacing:-.01em;margin:18px 0 22px}
+.standfirst{font-family:var(--display);font-size:clamp(1.1rem,2.4vw,1.35rem);color:var(--navy);
+  line-height:1.55;padding-bottom:24px;border-bottom:1px solid var(--line)}
+.meta{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+  font-weight:600;margin:24px 0 42px}
+.note h2{font-family:var(--display);font-size:clamp(1.3rem,2.8vw,1.6rem);color:var(--navy);
+  font-weight:500;margin:44px 0 12px;line-height:1.3}
+.note h2::before{content:"";display:block;width:34px;height:2px;background:var(--taupe);margin-bottom:16px}
+.note p{color:var(--muted);font-size:1.03rem;margin-bottom:16px}
+
+.note-disclaimer{margin:56px 0 36px;padding:22px 26px;background:var(--paper-2);border-left:2px solid var(--taupe)}
+.note-disclaimer p{font-size:.88rem;color:var(--muted);margin:0}
+
+.btn{display:inline-block;font-family:var(--body);font-weight:600;font-size:.82rem;letter-spacing:.12em;
+  text-transform:uppercase;padding:15px 34px;border:1px solid var(--navy);cursor:pointer;transition:.25s}
+.btn-primary{background:var(--navy);color:#fff}
+.btn-primary:hover{background:var(--taupe);border-color:var(--taupe)}
+
+/* footer */
+footer{background:#08111f;color:rgba(255,255,255,.6);padding:54px 0 30px}
+.foot-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:30px;
+  padding-bottom:34px;border-bottom:1px solid rgba(255,255,255,.1)}
+.foot-top .logo .lg{color:#fff}
+.foot-links{display:flex;gap:40px;flex-wrap:wrap}
+.foot-links a{font-size:.82rem;color:rgba(255,255,255,.7)}
+.foot-links a:hover{color:var(--taupe-light)}
+.foot-bottom{padding-top:24px;font-size:.78rem}
+.foot-bottom .disc{max-width:62ch;color:rgba(255,255,255,.4);line-height:1.6}
+
+@media(max-width:720px){
+  nav{position:fixed;inset:0;background:var(--navy);flex-direction:column;display:none;
+    align-items:center;justify-content:center}
+  nav.open{display:flex}
+  nav ul{flex-direction:column;gap:28px;text-align:center}
+  nav a{color:#fff!important;font-size:1rem}
+  .burger{display:flex;z-index:1000}
+  .burger.active span{background:#fff}
+  .logo .sm{display:none}
+  .note{padding:120px 0 70px}
+  .note h2{margin-top:34px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}

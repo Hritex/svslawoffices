@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Personality rights and the limits of the AI safe harbour | SVS Law Offices</title>
+<meta name="description" content="As synthetic likenesses proliferate, the intermediary defence is being tested. Where Indian law currently stands on impersonation, consent and platform liability.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/note.css">
+</head>
+<body>
+<header id="header" class="scrolled">
+  <div class="wrap bar">
+    <a href="../index.html" class="logo">
+      <span class="lg">SVS</span><span class="div"></span><span class="sm">Law<br>Offices</span>
+    </a>
+    <nav id="nav">
+      <ul>
+        <li><a href="../index.html#home">Home</a></li>
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#practice">Practice Areas</a></li>
+        <li><a href="../index.html#insights">Insights</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <button class="burger" id="burger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<article class="note">
+  <div class="wrap narrow">
+    <a href="../index.html#insights" class="back">&larr; Insights and Updates</a>
+    <span class="cat">Media and Technology</span>
+    <h1>Personality rights and the limits of the AI safe harbour</h1>
+    <p class="standfirst">As synthetic likenesses proliferate, the intermediary defence is being tested. Where Indian law currently stands on impersonation, consent and platform liability.</p>
+    <div class="meta">SVS Law Offices &middot; July 2026</div>
+    <h2>The problem</h2>
+    <p>Generative tools now make it trivial to produce a convincing video or audio recording of a person saying or doing something they never said or did. The applications range from the merely commercial, an unauthorised endorsement, to the seriously harmful: fabricated confessions, synthetic intimate imagery, and manufactured evidence.</p>
+    <h2>The rights engaged</h2>
+    <p>Indian law protects personality through several overlapping routes rather than a single statute. Publicity rights, recognised in a line of decisions, protect the commercial value in a person's name, image, likeness and voice. Passing off protects against misrepresentation of endorsement. Defamation protects reputation. Article 21 protects privacy, and following the recognition of informational privacy as a fundamental right, the unauthorised use of a person's likeness engages constitutional protection. The Digital Personal Data Protection Act, 2023 adds a consent architecture around personal data, and a photograph or voice recording of an identifiable person is personal data.</p>
+    <h2>The safe harbour</h2>
+    <p>Section 79 of the Information Technology Act, 2000 exempts an intermediary from liability for third-party content, provided its function is limited to providing access, it does not initiate the transmission or select or modify the content, and it observes due diligence including the requirements of the Intermediary Guidelines. The exemption is lost where the intermediary has conspired, abetted or induced the unlawful act, or where, upon receiving actual knowledge, it fails to expeditiously remove the material.</p>
+    <h2>Where the tension lies</h2>
+    <p>The safe harbour was designed for a platform that hosts what its users upload. It sits awkwardly on a platform that generates the content itself in response to a prompt. A model that synthesises a likeness is not, on any natural reading, merely providing access to information made available by a third party; it has selected and modified, and arguably initiated. Whether generative services can claim Section 79 protection at all is, at present, an open question, and one on which litigants should expect the argument rather than assume the answer.</p>
+    <h2>Practical steps</h2>
+    <p>For individuals whose likeness has been misused: preserve the material with timestamps and URLs before it is taken down, issue a takedown notice under the Intermediary Guidelines, and consider a John Doe injunction where the uploader is unidentified, which is the usual case. Speed matters more than perfection. For platforms and businesses deploying generative tools: obtain express, recorded, purpose-specific consent before synthesising any identifiable person, and do not rely on a general terms-of-service clause to supply it.</p>
+    <div class="note-disclaimer">
+      <p>This note is provided for general information only. It is not legal advice and should not be relied upon as such. It does not create a lawyer-client relationship. If you require assistance on a specific matter, please seek independent legal advice.</p>
+    </div>
+    <a href="../index.html#contact" class="btn btn-primary">Request a Consultation</a>
+  </div>
+</article>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <a href="../index.html" class="logo">
+        <span class="lg">SVS</span><span class="div"></span><span class="sm">Law<br>Offices</span>
+      </a>
+      <div class="foot-links">
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#practice">Practice Areas</a>
+        <a href="../index.html#insights">Insights</a>
+        <a href="../index.html#contact">Contact</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p class="disc">As per the rules of the Bar Council of India, SVS Law Offices does not solicit work or advertise. The contents of this website are for general information only and do not constitute legal advice or an advertisement. &copy; <span id="yr"></span> SVS Law Offices. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const burger = document.getElementById('burger'), nav = document.getElementById('nav');
+  burger.addEventListener('click', () => { nav.classList.toggle('open'); burger.classList.toggle('active'); });
+</script>
+</body>
+</html>

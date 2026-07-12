@@ -23,12 +23,12 @@
     --body:'Inter',system-ui,sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{font-family:var(--body);color:var(--ink);background:var(--paper);line-height:1.65;-webkit-font-smoothing:antialiased}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:hidden}
+  body{font-family:var(--body);color:var(--ink);background:var(--paper);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
   body.locked{overflow:hidden}
   a{color:inherit;text-decoration:none}
   img{max-width:100%;display:block}
-  .wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 clamp(20px,5vw,32px)}
   .eyebrow{font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--taupe);font-weight:600}
 
   /* ---------- DISCLAIMER MODAL ---------- */
@@ -75,26 +75,27 @@
   header.scrolled .burger span{background:var(--navy)}
 
   /* ---------- HERO ---------- */
-  .hero{position:relative;min-height:100vh;display:flex;align-items:center;
+  .hero{position:relative;min-height:auto;display:flex;align-items:center;max-width:100vw;
     background:linear-gradient(125deg,#0C1B31 0%,#142540 55%,#1a2e4d 100%);overflow:hidden}
   .hero::before{content:"";position:absolute;inset:0;
     background-image:radial-gradient(circle at 80% 20%,rgba(165,145,126,.16),transparent 45%);}
   /* faint serif watermark */
   .hero .watermark{position:absolute;right:-4%;bottom:-12%;font-family:var(--display);
     font-size:42vw;line-height:.8;color:rgba(255,255,255,.035);font-weight:600;letter-spacing:-.02em;pointer-events:none;user-select:none}
-  .hero .wrap{position:relative;z-index:2;padding-top:120px;padding-bottom:80px}
+  .hero .wrap{position:relative;z-index:2;padding-top:150px;padding-bottom:100px}
   .hero .eyebrow{display:block;margin-bottom:26px;opacity:0;animation:fade .8s .2s forwards}
-  .hero h1{font-family:var(--display);color:#fff;font-weight:400;
-    font-size:clamp(2.6rem,6vw,5rem);line-height:1.04;letter-spacing:-.015em;max-width:16ch;opacity:0;animation:fade .9s .35s forwards}
   .hero h1 em{font-style:italic;color:var(--taupe-light)}
-  .hero .lead{color:rgba(255,255,255,.78);font-size:1.12rem;max-width:54ch;margin-top:30px;opacity:0;animation:fade 1s .55s forwards}
-  .hero .cta-row{margin-top:42px;display:flex;gap:16px;flex-wrap:wrap;opacity:0;animation:fade 1s .7s forwards}
+  .hero .lead{color:rgba(255,255,255,.78);font-size:1.12rem;max-width:56ch;margin-top:22px;opacity:0;animation:fade 1s .4s forwards}
+  .hero .lead:first-of-type{margin-top:0}
+  .hero .lead:nth-of-type(2){animation-delay:.55s}
+  .hero .lead:nth-of-type(3){animation-delay:.7s}
+  .hero .cta-row{margin-top:36px;display:flex;gap:16px;flex-wrap:wrap;opacity:0;animation:fade 1s .7s forwards}
   .hero .btn-primary{background:var(--taupe);border-color:var(--taupe);color:var(--navy)}
   .hero .btn-primary:hover{background:#fff;border-color:#fff}
   .hero .btn-ghost{color:#fff;border-color:rgba(255,255,255,.4)}
   .hero .btn-ghost:hover{background:#fff;color:var(--navy);border-color:#fff}
   @keyframes fade{to{opacity:1;transform:none}}
-  .hero .eyebrow,.hero h1,.hero .lead,.hero .cta-row{transform:translateY(16px)}
+  .hero .lead,.hero .cta-row{transform:translateY(16px)}
 
   /* ---------- SECTION SHELL ---------- */
   section{padding:110px 0}
@@ -129,7 +130,7 @@
   /* ---------- INSIGHTS ---------- */
   .insights{background:var(--paper)}
   .ins-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
-  .ins{border-top:2px solid var(--navy);padding-top:22px;transition:.3s;cursor:pointer}
+  .ins{display:block;border-top:2px solid var(--navy);padding-top:22px;transition:.3s;cursor:pointer}
   .ins:hover{border-color:var(--taupe)}
   .ins .cat{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--taupe);font-weight:600}
   .ins .date{font-size:.8rem;color:var(--muted);float:right}
@@ -137,6 +138,7 @@
   .ins p{font-size:.92rem;color:var(--muted)}
   .ins .more{display:inline-block;margin-top:16px;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:var(--navy);font-weight:600}
   .ins:hover .more{color:var(--taupe)}
+
 
   /* ---------- CONTACT ---------- */
   .contact{background:var(--navy);color:#fff;padding-bottom:0}
@@ -153,6 +155,10 @@
   .form input:focus,.form textarea:focus{outline:none;border-color:var(--taupe);background:rgba(255,255,255,.1)}
   .form .btn-primary{background:var(--taupe);border-color:var(--taupe);color:var(--navy);width:100%}
   .form .btn-primary:hover{background:#fff;border-color:#fff}
+  .form .btn-primary:disabled{opacity:.6;cursor:default}
+  .f-status{font-size:.86rem;margin-top:14px;min-height:1.2em}
+  .f-status.ok{color:var(--taupe-light)}
+  .f-status.err{color:#ffb4a6}
 
   /* ---------- FOOTER ---------- */
   footer{background:#08111f;color:rgba(255,255,255,.6);padding:54px 0 30px}
@@ -169,7 +175,7 @@
   @media(max-width:900px){
     .about-grid,.ct-grid{grid-template-columns:1fr;gap:44px}
     .pa-grid,.ins-grid{grid-template-columns:repeat(2,1fr)}
-  }
+    }
   @media(max-width:720px){
     .wrap{padding:0 22px}
     nav{position:fixed;inset:0;background:var(--navy);flex-direction:column;
@@ -178,7 +184,7 @@
     nav ul{flex-direction:column;gap:28px;text-align:center}
     nav a{color:#fff!important;font-size:1rem}
     .burger{display:flex;z-index:1000}
-    nav.open ~ .burger span,.burger.active span{background:#fff}
+    nav.open ~ .burger span.burger.active span{background:#fff}
     section{padding:80px 0}
     .pa-grid,.ins-grid{grid-template-columns:1fr}
     #disclaimer .box{padding:32px 24px}
@@ -245,8 +251,9 @@
 <section class="hero" id="home">
   <div class="watermark" aria-hidden="true">S</div>
   <div class="wrap">
-    <h1>Considered counsel for matters that <em>cannot</em> be left to chance.</h1>
-    <p class="lead">SVS Law Offices is a full-service law firm headquartered in New Delhi, representing clients all across India. We act for individuals, families, businesses and institutions alike &mdash; before courts, tribunals and regulatory authorities &mdash; bringing the same preparation and care to every matter we take on, whatever its size.</p>
+    <p class="lead">A full-service law firm headquartered in New Delhi, representing clients all across India.</p>
+    <p class="lead">We act for individuals, families, businesses and institutions alike, appearing before the Supreme Court of India, High Courts and district courts across the country, tribunals, regulatory authorities and commissions. Our work spans both litigation and advisory: from disputes that must be fought to their conclusion, to the quieter counsel that prevents a dispute from arising at all.</p>
+    <p class="lead">Every matter is led personally by a partner. Whatever its size, it receives the same preparation, the same candour, and the same care.</p>
     <div class="cta-row">
       <a href="#contact" class="btn btn-primary">Request a Consultation</a>
       <a href="#practice" class="btn btn-ghost">Our Practice</a>
@@ -264,8 +271,8 @@
     <div class="about-grid">
       <div>
         <p class="lead-p">SVS Law Offices is a full-service law firm headquartered in New Delhi, representing clients all across India.</p>
-        <p>The firm appears before the District Courts, the High Court of Delhi, High Courts across the country, tribunals and regulatory authorities, and the Supreme Court of India. It advises a diverse base of clients &mdash; from individuals and family enterprises to companies and institutional bodies &mdash; on both contentious and advisory work. Each engagement is led personally by a partner, ensuring that the strategy a client is promised is the strategy a client receives.</p>
-        <p>Our approach is deliberately unhurried at the desk and decisive in the courtroom: matters are researched thoroughly, risks are mapped honestly, and clients are counselled on the path that actually serves their interest &mdash; not merely the one that prolongs a file.</p>
+        <p>The firm appears before the District Courts, the High Court of Delhi, High Courts across the country, tribunals and regulatory authorities, and the Supreme Court of India. It advises a diverse base of clients, from individuals and family enterprises to companies and institutional bodies, on both contentious and advisory work. Each engagement is led personally by a partner, ensuring that the strategy a client is promised is the strategy a client receives.</p>
+        <p>Our approach is deliberately unhurried at the desk and decisive in the courtroom: matters are researched thoroughly, risks are mapped honestly, and clients are counselled on the path that actually serves their interest, not merely the one that prolongs a file.</p>
       </div>
       <div class="values">
         <div class="v">
@@ -278,7 +285,7 @@
         </div>
         <div class="v">
           <h4>Accessibility</h4>
-          <p>Clients reach the lawyer handling their matter directly &mdash; without layers, without delay, in plain language.</p>
+          <p>Clients reach the lawyer handling their matter directly, without layers, without delay, in plain language.</p>
         </div>
       </div>
     </div>
@@ -297,13 +304,13 @@
       <div class="pa">
         <span class="num">01</span>
         <h3>Dispute Resolution &amp; Civil Litigation</h3>
-        <p>Conduct of civil and commercial suits from institution to execution &mdash; recovery proceedings, specific performance, declaratory and partition suits, injunctions and interim relief, revisions, first and second appeals, writ petitions and special leave petitions. The firm appears before District Courts, Commercial Courts, the High Court of Delhi, High Courts across India and the Supreme Court.</p>
+        <p>Conduct of civil and commercial suits from institution to execution, recovery proceedings, specific performance, declaratory and partition suits, injunctions and interim relief, revisions, first and second appeals, writ petitions and special leave petitions. The firm appears before District Courts, Commercial Courts, the High Court of Delhi, High Courts across India and the Supreme Court.</p>
         <span class="line"></span>
       </div>
       <div class="pa">
         <span class="num">02</span>
         <h3>Criminal Law</h3>
-        <p>Defence and prosecution across the criminal spectrum under the Bharatiya Nyaya Sanhita and the Bharatiya Nagarik Suraksha Sanhita &mdash; anticipatory and regular bail, quashing petitions, discharge, trial, revision and appeal. Advisory and representation in economic offences, cheque dishonour under Section 138 of the Negotiable Instruments Act, cheating and forgery, offences under the Prevention of Money Laundering Act, and proceedings before investigating agencies.</p>
+        <p>Defence and prosecution across the criminal spectrum under the Bharatiya Nyaya Sanhita and the Bharatiya Nagarik Suraksha Sanhita, anticipatory and regular bail, quashing petitions, discharge, trial, revision and appeal. Advisory and representation in economic offences, cheque dishonour under Section 138 of the Negotiable Instruments Act, cheating and forgery, offences under the Prevention of Money Laundering Act, and proceedings before investigating agencies.</p>
         <span class="line"></span>
       </div>
       <div class="pa">
@@ -315,7 +322,7 @@
       <div class="pa">
         <span class="num">04</span>
         <h3>Electricity &amp; Energy Laws</h3>
-        <p>Advisory and representation under the Electricity Act, 2003 &mdash; tariff determination and truing-up, change-in-law compensation, power purchase and transmission agreements, open access, wheeling and cross-subsidy surcharge, licensing and renewable energy obligations. Appearances before the Central and State Electricity Regulatory Commissions, the Appellate Tribunal for Electricity and the Supreme Court.</p>
+        <p>Advisory and representation under the Electricity Act, 2003, tariff determination and truing-up, change-in-law compensation, power purchase and transmission agreements, open access, wheeling and cross-subsidy surcharge, licensing and renewable energy obligations. Appearances before the Central and State Electricity Regulatory Commissions, the Appellate Tribunal for Electricity and the Supreme Court.</p>
         <span class="line"></span>
       </div>
       <div class="pa">
@@ -345,7 +352,7 @@
       <div class="pa">
         <span class="num">09</span>
         <h3>Family, Matrimonial &amp; Succession</h3>
-        <p>Divorce by mutual consent and contested divorce, maintenance under Section 125 BNSS and the Hindu Adoptions and Maintenance Act, custody and guardianship, restitution of conjugal rights, and proceedings under the Protection of Women from Domestic Violence Act. Drafting of wills, trusts, gift and family settlement deeds; probate, letters of administration and succession certificates; and inheritance and partition disputes &mdash; handled with sensitivity and discretion.</p>
+        <p>Divorce by mutual consent and contested divorce, maintenance under Section 125 BNSS and the Hindu Adoptions and Maintenance Act, custody and guardianship, restitution of conjugal rights, and proceedings under the Protection of Women from Domestic Violence Act. Drafting of wills, trusts, gift and family settlement deeds; probate, letters of administration and succession certificates; and inheritance and partition disputes, handled with sensitivity and discretion.</p>
         <span class="line"></span>
       </div>
     </div>
@@ -357,59 +364,61 @@
   <div class="wrap">
     <div class="sec-head">
       <span class="eyebrow">Knowledge</span>
-      <h2>Insights &amp; updates</h2>
-      <p>Notes on recent developments across the courts and tribunals that affect the people and businesses we advise.</p>
+      <h2>Insights and updates</h2>
+      <p>Notes written by the firm on recent developments across the courts and tribunals that affect the people and businesses we advise.</p>
     </div>
+
     <div class="ins-grid">
-      <article class="ins">
+      <a class="ins" href="notes/section-138-commercial-lease-defaults.html">
         <span class="cat">Criminal Law</span><span class="date">July 2026</span>
         <h3>Section 138 as leverage in commercial lease defaults</h3>
-        <p>Cheque dishonour proceedings are increasingly used as pressure in lease disputes. A look at where settlement ends and closure actually begins.</p>
+        <p>Cheque dishonour proceedings are increasingly deployed as pressure in lease disputes. A note on where settlement ends and closure actually begins.</p>
         <span class="more">Read note &rarr;</span>
-      </article>
-      <article class="ins">
+      </a>
+      <a class="ins" href="notes/arbitration-confidentiality-collateral-proceedings.html">
         <span class="cat">Arbitration</span><span class="date">July 2026</span>
         <h3>Confidentiality of arbitration documents in collateral proceedings</h3>
         <p>The Delhi High Court has held that confidential arbitration records cannot be pressed into service in separate proceedings. What this means for parties drafting clauses today.</p>
         <span class="more">Read note &rarr;</span>
-      </article>
-      <article class="ins">
+      </a>
+      <a class="ins" href="notes/delhi-rent-act-tenancy-transfer.html">
         <span class="cat">Real Estate</span><span class="date">July 2026</span>
         <h3>Delhi Rent Act: transfer of tenancy without the landlord&rsquo;s consent</h3>
-        <p>The Supreme Court has ordered eviction where tenancy passed to a merged bank without written consent. A reminder that corporate reorganisation does not carry tenancy with it.</p>
+        <p>The Supreme Court has ordered eviction where a tenancy passed to a merged bank without written consent. Corporate reorganisation does not carry tenancy with it.</p>
         <span class="more">Read note &rarr;</span>
-      </article>
-      <article class="ins">
+      </a>
+      <a class="ins" href="notes/power-sector-tender-awards.html">
         <span class="cat">Electricity Law</span><span class="date">July 2026</span>
         <h3>Tender awards in the power sector and the limits of discretion</h3>
-        <p>Courts continue to scrutinise procurement by distribution licensees. A note on quashing of arbitrary tender awards and the evidentiary weight of type-test compliance.</p>
+        <p>Courts continue to scrutinise procurement by distribution licensees. On the quashing of arbitrary tender awards and the weight of type-test compliance.</p>
         <span class="more">Read note &rarr;</span>
-      </article>
-      <article class="ins">
-        <span class="cat">Media &amp; Technology</span><span class="date">July 2026</span>
+      </a>
+      <a class="ins" href="notes/personality-rights-ai-safe-harbour.html">
+        <span class="cat">Media and Technology</span><span class="date">July 2026</span>
         <h3>Personality rights and the limits of the AI safe harbour</h3>
         <p>As synthetic likenesses proliferate, the intermediary defence is being tested. Where Indian law currently stands on impersonation, consent and platform liability.</p>
         <span class="more">Read note &rarr;</span>
-      </article>
-      <article class="ins">
+      </a>
+      <a class="ins" href="notes/secretly-recorded-spousal-calls.html">
         <span class="cat">Family Law</span><span class="date">July 2026</span>
         <h3>Secretly recorded calls between spouses: privacy and admissibility</h3>
         <p>The Telangana High Court has held such recordings inadmissible in divorce proceedings as a violation of the right to privacy. Implications for matrimonial evidence.</p>
         <span class="more">Read note &rarr;</span>
-      </article>
-      <article class="ins">
-        <span class="cat">Corporate &amp; Insolvency</span><span class="date">July 2026</span>
-        <h3>The SARFAESI&ndash;IBC overlap: a system at odds with itself</h3>
-        <p>Secured creditors face competing timelines and forums. A practical view of how enforcement and resolution collide, and how to sequence remedies.</p>
+      </a>
+      <a class="ins" href="notes/sarfaesi-ibc-overlap.html">
+        <span class="cat">Corporate and Insolvency</span><span class="date">July 2026</span>
+        <h3>The SARFAESI and IBC overlap: a system at odds with itself</h3>
+        <p>Secured creditors face competing timelines and forums. How enforcement and resolution collide, and how to sequence remedies.</p>
         <span class="more">Read note &rarr;</span>
-      </article>
-      <article class="ins">
+      </a>
+      <a class="ins" href="notes/cross-class-trademark-protection.html">
         <span class="cat">Intellectual Property</span><span class="date">July 2026</span>
         <h3>Cross-class trademark protection without a formal well-known declaration</h3>
         <p>The Delhi High Court has clarified that a mark need not be formally declared well-known to claim protection across classes. What proprietors should record now.</p>
         <span class="more">Read note &rarr;</span>
-      </article>
+      </a>
     </div>
+
   </div>
 </section>
 
@@ -431,20 +440,20 @@
         </div>
         <div class="ct-block">
           <h4>Email</h4>
-          <p><a href="mailto:contact@svslawoffices.com">contact@svslawoffices.com</a></p>
+          <p><a href="mailto:contact@svslawoffices.in">contact@svslawoffices.in</a></p>
         </div>
         <div class="ct-block">
           <h4>Mobile</h4>
-          <p><a href="tel:+919910035355">+91 99100 35355</a></p>
-          <p><a href="tel:+917827483115">+91 78274 83115</a></p>
+          <p><a href="tel:+917895929238">+91 78959 29238</a></p>
         </div>
       </div>
       <div class="form">
-        <input type="text" placeholder="Full name" aria-label="Full name">
-        <input type="email" placeholder="Email address" aria-label="Email address">
-        <input type="tel" placeholder="Phone (optional)" aria-label="Phone">
-        <textarea rows="4" placeholder="Brief description of your matter" aria-label="Message"></textarea>
-        <button class="btn btn-primary" type="button" onclick="alert('This is a demo form. Connect it to your email or a form service before going live.')">Send Enquiry</button>
+        <input type="text" id="f-name" placeholder="Full name" aria-label="Full name">
+        <input type="email" id="f-email" placeholder="Email address" aria-label="Email address">
+        <input type="tel" id="f-phone" placeholder="Phone (optional)" aria-label="Phone">
+        <textarea rows="4" id="f-msg" placeholder="Brief description of your matter" aria-label="Message"></textarea>
+        <button class="btn btn-primary" type="button" id="f-send">Send Enquiry</button>
+        <p class="f-status" id="f-status" role="status"></p>
         <p style="font-size:.78rem;color:rgba(255,255,255,.5);margin-top:14px">Submitting an enquiry does not create a lawyer-client relationship.</p>
       </div>
     </div>
@@ -503,6 +512,66 @@
   const header = document.getElementById('header');
   window.addEventListener('scroll', ()=>{
     header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // ----- Enquiry form -> Formspree -> contact@svslawoffices.in -----
+  // Setup: create a form at https://formspree.io with the recipient
+  // contact@svslawoffices.in, then paste its 8-character ID below.
+  const FORMSPREE_ID = "YOUR_FORM_ID";
+
+  const sendBtn = document.getElementById('f-send');
+  const status  = document.getElementById('f-status');
+
+  sendBtn.addEventListener('click', async () => {
+    const name  = document.getElementById('f-name').value.trim();
+    const email = document.getElementById('f-email').value.trim();
+    const phone = document.getElementById('f-phone').value.trim();
+    const msg   = document.getElementById('f-msg').value.trim();
+
+    status.className = 'f-status';
+    if (!name || !email || !msg) {
+      status.textContent = 'Please provide your name, email and a brief description.';
+      status.classList.add('err');
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      status.textContent = 'Please enter a valid email address.';
+      status.classList.add('err');
+      return;
+    }
+    if (FORMSPREE_ID === 'YOUR_FORM_ID') {
+      status.textContent = 'Form not yet connected. Add your Formspree ID in index.html.';
+      status.classList.add('err');
+      return;
+    }
+
+    sendBtn.disabled = true;
+    sendBtn.textContent = 'Sending...';
+    status.textContent = '';
+
+    try {
+      const res = await fetch('https://formspree.io/f/' + FORMSPREE_ID, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          name: name, email: email, phone: phone, message: msg,
+          _subject: 'Website enquiry from ' + name
+        })
+      });
+      if (res.ok) {
+        status.textContent = 'Thank you. Your enquiry has been sent, we will respond shortly.';
+        status.classList.add('ok');
+        ['f-name','f-email','f-phone','f-msg'].forEach(i => document.getElementById(i).value = '');
+      } else {
+        throw new Error('send failed');
+      }
+    } catch (e) {
+      status.textContent = 'Could not send. Please email contact@svslawoffices.in directly.';
+      status.classList.add('err');
+    } finally {
+      sendBtn.disabled = false;
+      sendBtn.textContent = 'Send Enquiry';
+    }
   });
 
   // ----- Mobile menu -----
