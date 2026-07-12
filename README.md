@@ -4,11 +4,8 @@ Static site. No build step, no server. Deployable to GitHub Pages as-is.
 
 ```
 index.html                        the website
-news.json                         legal news feed (auto-regenerated weekly)
-update_news.py                    script that rebuilds news.json
 assets/note.css                   styles for the note pages
 notes/*.html                      8 full Firm Notes
-.github/workflows/update-news.yml weekly scheduled job
 ```
 
 ---
@@ -67,34 +64,7 @@ hosting (Zoho Mail has a free tier; Google Workspace is around Rs 150/user/month
 
 ---
 
-## 3. The weekly Legal News feed
-
-`.github/workflows/update-news.yml` runs **every Monday at 06:00 IST**. It pulls
-the RSS feeds of Bar and Bench, LiveLaw and SCC Online Blog, writes `news.json`,
-and commits it. The site reads that file and renders the headlines.
-
-**Enable it once:** go to the **Actions** tab and click *I understand my workflows,
-go ahead and enable them*. To test immediately, open *Update Legal News* → **Run workflow**.
-
-### What it stores
-
-Only the **headline, a short summary (max 28 words) and a link** to the publisher's
-own page. Full articles are never copied. Every item opens on the original site.
-This matters: those articles are the publishers' copyright, and reproducing them
-on the firm's website would infringe it. Do not increase `SUMMARY_WORDS` in
-`update_news.py` without thinking carefully about this.
-
-### If a feed changes
-
-`update_news.py` tries several candidate URLs per publication and uses whichever
-responds. If a publisher moves or removes its feed, the script logs a warning and
-**leaves the existing `news.json` in place** rather than blanking the section.
-The site therefore keeps showing the last good headlines. Check the Actions log
-if the feed appears stale, and update the URLs in `SOURCES` if needed.
-
----
-
-## 4. Editing the Firm Notes
+## 3. Editing the Firm Notes
 
 The eight notes in `notes/` are ordinary HTML files. To edit one, change the text
 between the `<p>` tags. To add a new note, copy an existing file, change the
