@@ -448,25 +448,12 @@
         </div>
       </div>
       <div class="form">
-          <form id="f-form" action="https://formspree.io/f/mykrgajj" method="POST">
-            <label>
-              <input type="text" name="name" id="f-name" placeholder="Full name" aria-label="Full name">
-            </label>
-            <label>
-              <input type="email" name="email" id="f-email" placeholder="Email address" aria-label="Email address">
-            </label>
-            <label>
-              <input type="tel" name="phone" id="f-phone" placeholder="Phone (optional)" aria-label="Phone">
-            </label>
-            <label>
-              <textarea rows="4" name="message" id="f-msg" placeholder="Brief description of your matter"
-                aria-label="Message"></textarea>
-            </label>
-            <!-- optional: fixes the subject line of the notification email -->
-            <input type="hidden" name="_subject" value="New website enquiry">
-            <button class="btn btn-primary" type="submit" id="f-send">Send Enquiry</button>
-            <p class="f-status" id="f-status" role="status"></p>
-          </form>
+        <input type="text" id="f-name" placeholder="Full name" aria-label="Full name">
+        <input type="email" id="f-email" placeholder="Email address" aria-label="Email address">
+        <input type="tel" id="f-phone" placeholder="Phone (optional)" aria-label="Phone">
+        <textarea rows="4" id="f-msg" placeholder="Brief description of your matter" aria-label="Message"></textarea>
+        <button class="btn btn-primary" type="button" id="f-send">Send Enquiry</button>
+        <p class="f-status" id="f-status" role="status"></p>
         <p style="font-size:.78rem;color:rgba(255,255,255,.5);margin-top:14px">Submitting an enquiry does not create a lawyer-client relationship.</p>
       </div>
     </div>
@@ -530,7 +517,7 @@
   // ----- Enquiry form -> Formspree -> contact@svslawoffices.in -----
   // Setup: create a form at https://formspree.io with the recipient
   // contact@svslawoffices.in, then paste its 8-character ID below.
-  const FORMSPREE_ID = "YOUR_FORM_ID";
+  const FORMSPREE_ID = "mykrgajj";
 
   const sendBtn = document.getElementById('f-send');
   const status  = document.getElementById('f-status');
@@ -552,7 +539,7 @@
       status.classList.add('err');
       return;
     }
-    if (FORMSPREE_ID === 'YOUR_FORM_ID') {
+    if (FORMSPREE_ID === 'mykrgajj') {
       status.textContent = 'Form not yet connected. Add your Formspree ID in index.html.';
       status.classList.add('err');
       return;
