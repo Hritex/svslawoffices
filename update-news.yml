@@ -1,0 +1,37 @@
+name: Update legal news feed
+
+on:
+  schedule:
+    # Runs once a day at 03:00 UTC (~08:30 AM IST)
+    - cron: "0 3 * * *"
+  workflow_dispatch: {}   # lets you trigger it manually from the Actions tab
+
+permissions:
+  contents: write         # needed so the workflow can push the updated news.json
+
+jobs:
+  update-news:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run update_news.py
+        run: python update_news.py
+
+      - name: Commit and push news.json if it changed
+        run: |
+          git config user.name "svs-news-bot"
+          git config user.email "actions@users.noreply.github.com"
+          if git diff --quiet -- news.json; then
+            echo "No changes to news.json — nothing to commit."
+          else
+            git add news.json
+            git commit -m "chore: update news feed [automated]"
+            git push
+          fi
